@@ -83,9 +83,7 @@ def create_presentation(current_performance, projected_performance, table_data):
     return pptx_buffer
 
 
-def main():
-    st.title("Performance and Projections PowerPoint Table Generator")
-
+def display_kpi_generator():
     row_names = [
         "LinkedIn Followers",
         "Email Subscribers",
@@ -149,7 +147,3 @@ def main():
         file_name="generated_performance_projections.pptx",
         mime="application/vnd.openxmlformats-officedocument.presentationml.presentation"
     )
-
-
-if __name__ == "__main__":
-    main()
