@@ -2,6 +2,7 @@ import streamlit as st
 from beatrice_helpers import load_metrics_data, load_post_data, calculate_totals, calculate_average_engagement
 from beatrice_helpers import create_overview_chart, create_follower_chart, create_unique_visitors_chart
 from beatrice_helpers import create_total_clicks_chart, create_total_impressions_chart, create_reposts_chart, display_manual_entry_form
+from kpi_generator import display_kpi_generator
 import webbrowser
 import pandas as pd
 import database as db
@@ -16,11 +17,12 @@ def display_beatrice():
         unsafe_allow_html=True
     )
 
-    tabs = st.tabs(["Account Metrics", "Post Metrics", "Database Management"])
+    tabs = st.tabs(["Account Metrics", "Post Metrics", "Database Management", KPI Generator])
     # Initialize database if it doesn't exist
     if not db.db_exists():
         db.init_db()
-
+    with tabs[3]:
+        display_kpi_generator()
     with tabs[2]:
         st.subheader("Mass Data Upload")
         with st.expander(label="Upload Data"):
